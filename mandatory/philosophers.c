@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:26:00 by mgama             #+#    #+#             */
-/*   Updated: 2023/03/22 00:23:51 by mgama            ###   ########.fr       */
+/*   Updated: 2023/04/19 12:53:06 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static int	create_pthreads(t_table *table)
 		threads.args[i].table = table;
 		threads.args[i].philo = &(table->philos[i]);
 		if (pthread_create(threads.threads + i, NULL, philo_routine, &(threads.args[i])) != 0)
-			printf("could not create pthread %d\n", i);
+			while (i--)
+				pthread_join (threads.threads[i], NULL);
+			return ((void)free (threads.threads), 1);
+			
 	}
 	i = -1;
 	while (++i < table->number_of_philo)
