@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:26:00 by mgama             #+#    #+#             */
-/*   Updated: 2023/04/19 12:53:06 by mgama            ###   ########.fr       */
+/*   Updated: 2023/04/19 15:21:26 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static int	create_pthreads(t_table *table)
 
 	threads.args = ft_calloc(table->number_of_philo, sizeof(t_thread));
 	if (!threads.args)
-		return (0);
+		return (1);
 	threads.threads = ft_calloc(table->number_of_philo, sizeof(pthread_t));
 	if (!threads.threads)
-		return (0);
+		return (1);
 	i =-1;
 	while (++i < table->number_of_philo)
 	{
@@ -39,7 +39,7 @@ static int	create_pthreads(t_table *table)
 	while (++i < table->number_of_philo)
 		pthread_join(threads.threads[i], NULL);
 	table->threads = threads;
-	return (1);
+	return (0);
 }
 
 static int	create_philos(t_table *table)
@@ -50,7 +50,7 @@ static int	create_philos(t_table *table)
 
 	table_philos = ft_calloc(table->number_of_philo + 1, sizeof(t_philo));
 	if (!table_philos)
-		return (0);
+		return (1);
 	i = -1;
 	while (++i < table->number_of_philo)
 	{
@@ -66,16 +66,16 @@ static int	create_philos(t_table *table)
 		table_philos[i] = temp_philo;
 	}
 	table->philos = table_philos;
-	return (1);
+	return (0);
 }
 
 void	philosophers(t_table *table)
 {
 	printf("%i %i %i %i\n", table->number_of_philo, table->time_to_die, table->time_to_eat, table->time_to_sleep);
 	table->philos = NULL;
-	if (!create_philos(table))
+	if (create_philos(table))
 		return free_table(table);
-	if (!create_pthreads(table))
+	if (create_pthreads(table))
 		return free_table(table);
 }
 
