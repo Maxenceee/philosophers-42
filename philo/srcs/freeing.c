@@ -14,6 +14,14 @@
 
 void	free_table(t_table *table)
 {
+	if (table->forks_r)
+		free(table->forks_r);
 	if (table->philos)
 		free(table->philos);
+	if (table->mutexes)
+		free(table->mutexes);
+	if (table->threads.threads)
+		free(table->threads.threads);
+	if (table->threads.args)
+		free(table->threads.args);
 }

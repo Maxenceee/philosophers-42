@@ -43,12 +43,6 @@ typedef struct s_philo
 	int				lfork;
 	int				rfork;
 	pthread_mutex_t	*forks;
-	// int		is_eating;
-	// int		is_thinking;
-	// int		is_sleeping;
-	// int		time_to_die;
-	// int		time_to_eat;
-	// int		time_to_sleep;
 	int				eating_count;
 	struct s_table	*table;
 }				t_philo;
@@ -56,7 +50,6 @@ typedef struct s_philo
 typedef struct s_thread
 {
 	int				id;
-	// struct s_table	*table;
 	struct s_philo	*philo;
 }				t_thread;
 
@@ -75,11 +68,12 @@ typedef struct s_table
 	int				time_to_sleep;
 	int				time_to_think;
 	int				eating_count;
-	
+
 	int				is_dead;
 	int				is_done;
 	t_philo			*philos;
 	t_render		threads;
+	pthread_mutex_t	*forks_r;
 	pthread_mutex_t	*mutexes;
 }				t_table;
 
@@ -106,7 +100,6 @@ int				check_died(t_philo *philo);
 int				check_done(t_philo *philo);
 void			set_died(t_table *table);
 void			set_done(t_table *table);
-
 
 /* eating */
 

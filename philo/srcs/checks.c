@@ -16,7 +16,8 @@ void	ft_print_state(t_philo *philo, char const *const str)
 {
 	pthread_mutex_lock(&philo->table->mutexes[PRINT]);
 	if (*str == 'd' || (!check_died(philo) && !check_done(philo)))
-		printf("%lu %d %s\n", ft_current_time(philo->table->start_timestamp), philo->id, str);
+		printf("%lu %d %s\n",
+			ft_current_time(philo->table->start_timestamp), philo->id, str);
 	pthread_mutex_unlock (&philo->table->mutexes[PRINT]);
 }
 

@@ -51,7 +51,8 @@ int	ft_simulation(t_table *table)
 			set_done(table);
 			break ;
 		}
-		if (last_meal && ft_abs_time() - last_meal > (unsigned int)table->time_to_die)
+		if (last_meal && ft_abs_time() - last_meal
+			> (unsigned int)table->time_to_die)
 		{
 			set_died(table);
 			ft_print_state(&table->philos[i], "died");
