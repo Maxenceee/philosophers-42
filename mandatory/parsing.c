@@ -3,50 +3,74 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
+/*   By: maxencegama <maxencegama@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:43:03 by mgama             #+#    #+#             */
-/*   Updated: 2023/05/16 14:29:14 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/14 12:48:30 by maxencegama      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	check_args(int argc, char **argv)
+static int	ft_is_numeric(char const *str)
 {
+	int	i;
 
+	i = 0;
+	if (*str == '+')
+		str++;
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	return (0);
+}
+
+static int	check_args(int argc, char **argv)
+{
+	if (argc < 5)
+	{
+		write(2, "Error: Too few arguments.\n", 26);
+		return (1);
+	}
+	if (argc > 6)
+	{
+		write(2, "Error: Too many arguments.\n", 27);
+		return (1);
+	}
+	while (argc-- > 1)
+	{
+		if (ft_is_numeric(argv[argc]) == 0)
+		{
+			write(2, "Error: Invalid character.\n", 26);
+			return (1);
+		}
+		if (ft_atol(argv[argc]) > INT32_MAX || ft_atol(argv[argc]) < 0)
+		{
+			write(2, "Error: Out of range value.\n", 27);
+			return (1);
+		}
+	}
+	return (0);
 }
 
 int	parse_philo(int argc, char **argv, t_table *table)
 {
-	int			philo_c;
-	int			i;
-	long int	t;
-	
-	if (argc < 5 || argc > 6)
-		return (printf("\033[1;31mInvalid arguments:\033[0m \033[4;36mnumber_of_philosophers\033[0m \033[4;36mtime_to_die\033[0m \033[4;36mtime_to_eat\033[0m \033[4;36mtime_to_sleep\033[0m \033[4;36m[number_of_times_each_philosopher_must_eat]\033[0m"), 1);
-	i = 0;
-	table->eating_count = -1;
+	if (check_args(argc, argv))
+		return (1);
 	table->is_dead = 0;
 	table->is_done = 0;
 	table->start_timestamp = ft_abs_time();
-	while (++i < argc)
-	{
-		t = ft_atol(argv[i]);
-		if (t < 0)
-			return (printf("\033[1;31mInvalid arguments:\033[0m negative numbers are not allowed"), 1);
-		else if (t > INT32_MAX)
-			return (printf("\033[1;31mInvalid arguments:\033[0m out of range"), 1);
-		if (i == 1)
-			table->number_of_philo = t;
-		else if (i == 2)
-			table->time_to_die = t;
-		else if (i == 3)
-			table->time_to_eat = t;
-		else if (i == 4)
-			table->time_to_sleep = t;
-		else if (i == 5)
-			table->eating_count = t;
-	}
+	table->number_of_philo = ft_atoi(argv[1]);
+	table->time_to_die = ft_atoi(argv[2]);
+	table->time_to_eat = ft_atoi(argv[3]);
+	table->time_to_sleep = ft_atoi(argv[4]);
+	table->time_to_think = 0;
+	if ((table->number_of_philo % 2) && (table->time_to_eat > table->time_to_sleep))
+		table->time_to_think = 1 + (table->time_to_eat - table->time_to_sleep);
+	if (argc == 5)
+		table->eating_count = -1;
+	else
+		table->eating_count = ft_atoi(argv[5]);
 	return (0);
 }
