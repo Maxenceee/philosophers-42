@@ -6,7 +6,7 @@
 /*   By: maxencegama <maxencegama@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:30:54 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/08 18:29:50 by maxencegama      ###   ########.fr       */
+/*   Updated: 2023/06/14 12:51:14 by maxencegama      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,11 @@ int	init_pthreads(t_table *table)
 		// threads.args[i].table = table;
 		threads.args[i].philo = &(table->philos[i]);
 		if (pthread_create(threads.threads + i, NULL, philo_routine, (void *)&(threads.args[i])))
+		{
 			while (i--)
 				pthread_join(threads.threads[i], NULL);
-			return (printf("Couldn't create threads"), (void)free(threads.threads), 1);
+			return (printf("Couldn't create threads"), (void)free(threads.threads), 1);	
+		}
 	}
 	ft_simulation(table);
 	i = -1;
