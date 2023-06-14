@@ -12,11 +12,16 @@
 
 #include "../includes/philosophers.h"
 
+int	check_args(int argc, char **argv)
+{
+
+}
+
 int	parse_philo(int argc, char **argv, t_table *table)
 {
-	int		philo_c;
-	int		i;
-	int		t;
+	int			philo_c;
+	int			i;
+	long int	t;
 	
 	if (argc < 5 || argc > 6)
 		return (printf("\033[1;31mInvalid arguments:\033[0m \033[4;36mnumber_of_philosophers\033[0m \033[4;36mtime_to_die\033[0m \033[4;36mtime_to_eat\033[0m \033[4;36mtime_to_sleep\033[0m \033[4;36m[number_of_times_each_philosopher_must_eat]\033[0m"), 1);
@@ -27,9 +32,11 @@ int	parse_philo(int argc, char **argv, t_table *table)
 	table->start_timestamp = ft_abs_time();
 	while (++i < argc)
 	{
-		t = ft_atoi(argv[i]);
+		t = ft_atol(argv[i]);
 		if (t < 0)
 			return (printf("\033[1;31mInvalid arguments:\033[0m negative numbers are not allowed"), 1);
+		else if (t > INT32_MAX)
+			return (printf("\033[1;31mInvalid arguments:\033[0m out of range"), 1);
 		if (i == 1)
 			table->number_of_philo = t;
 		else if (i == 2)

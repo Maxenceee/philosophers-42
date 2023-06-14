@@ -16,7 +16,7 @@ CC				=	cc
 RM				=	rm -f
 # CFLAGS			=	-Wall -Wextra -Werror -o3
 #MLX_INCLUDES	=	-I /usr/X11/include
-#MLX_LIB		=	-L /usr/X11/lib -lmlx -framework OpenGL -framework AppKit -L ./printf -lftprintf
+MLX_LIB			=	-lpthread 
 NAME			=	philo
 
 GREEN			=	\033[1;32m
@@ -42,7 +42,7 @@ $(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c $(HEADERS) Makefile
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME)
+	@$(CC) $(OBJS) $(MLX_LIB) -o $(NAME)
 	@echo "$(GREEN)$(NAME) compiled!$(DEFAULT)"
 
 bonus: $(OBJS_BONUS)

@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <stdint.h>
 # include <time.h>
 # include <sys/time.h>
 
@@ -130,6 +131,7 @@ void			free_table(t_table *table);
 /* ft_utils */
 
 int				ft_atoi(const char *str);
+long int		ft_atol(const char *str);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_calloc(size_t count, size_t size);
