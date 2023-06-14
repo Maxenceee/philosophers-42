@@ -1,7 +1,19 @@
 MANDATORY_DIR	=	srcs
 OBJ_DIR			=	.objs
 
-SRCS			=	$(shell find $(MANDATORY_DIR) -name "*.c")
+SRCS			=	$(MANDATORY_DIR)/checks.c	\
+					$(MANDATORY_DIR)/freeing.c	\
+					$(MANDATORY_DIR)/ft_atoi.c	\
+					$(MANDATORY_DIR)/ft_bzero.c	\
+					$(MANDATORY_DIR)/ft_calloc.c	\
+					$(MANDATORY_DIR)/ft_eating.c	\
+					$(MANDATORY_DIR)/ft_init.c	\
+					$(MANDATORY_DIR)/ft_memset.c	\
+					$(MANDATORY_DIR)/parsing.c	\
+					$(MANDATORY_DIR)/philo_routine.c	\
+					$(MANDATORY_DIR)/philosophers.c	\
+					$(MANDATORY_DIR)/time.c	\
+					$(MANDATORY_DIR)/utils.c
 OBJS			=	$(patsubst $(MANDATORY_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
 
 HEADER_SRCS		=	philosophers.h
@@ -9,9 +21,8 @@ HEADERS_DIR		=	includes/
 HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADER_SRCS))
 CC				=	cc
 RM				=	rm -f
-CFLAGS			=	-Wall -Wextra -Werror 
-#MLX_INCLUDES	=	-I /usr/X11/include
-MLX_LIB			=	-lpthread 
+CFLAGS			=	-Wall -Wextra -Werror
+LIBS			=	-lpthread 
 NAME			=	philo
 
 GREEN			=	\033[1;32m
@@ -31,7 +42,7 @@ $(OBJ_DIR)/%.o: $(MANDATORY_DIR)/%.c $(HEADERS) Makefile
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(MLX_LIB) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBS -o $(NAME)
 	@echo "$(GREEN)$(NAME) compiled!$(DEFAULT)"
 
 clean:
