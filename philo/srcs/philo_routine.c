@@ -73,13 +73,13 @@ void	*philo_routine(void *param)
 	if (thread->id % 2 == 0)
 	{
 		ft_print_state(philo, "is thinking");
-		ft_msleep (philo->table->time_to_eat);
+		ft_msleep(philo->table->time_to_eat);
 	}
 	while (1)
 	{
 		if (check_died(philo))
 			break ;
-		if (!ft_eating(philo))
+		if (ft_eating(philo))
 			break ;
 		ft_print_state(philo, "is thinking");
 		ft_msleep(philo->table->time_to_think);
