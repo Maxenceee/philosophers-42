@@ -6,7 +6,7 @@
 /*   By: maxencegama <maxencegama@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:06:28 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 13:30:29 by maxencegama      ###   ########.fr       */
+/*   Updated: 2023/06/14 15:08:04 by maxencegama      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	*philo_routine(void *param)
 	philo = thread->philo;
 	if (thread->id % 2 == 0)
 	{
-		printf("%d is thinking", thread->id);
+		ft_print_state(philo, "is thinking");
 		ft_msleep (philo->table->time_to_eat);
 	}
 	while (1)
