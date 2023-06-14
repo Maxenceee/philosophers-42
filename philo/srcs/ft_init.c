@@ -29,14 +29,14 @@ int	init_mutexes(t_table *table)
 {
 	pthread_mutex_t	*mutexes;
 	int				i;
-	
+
 	mutexes = ft_calloc((size_t)(M_NUM), sizeof(pthread_mutex_t));
+	table->mutexes = mutexes;
 	if (!mutexes)
 		return (1);
 	i = 0;
 	while (i < M_NUM)
 		pthread_mutex_init(&mutexes[i++], NULL);
-	table->mutexes = mutexes;
 	return (0);
 }
 
@@ -45,13 +45,12 @@ int	init_philos(t_table *table)
 	int				i;
 	pthread_mutex_t	*forks;
 	t_philo			*table_philos;
-	// t_philo	temp_philo;
 
 	forks = ft_calloc(table->number_of_philo, sizeof(pthread_mutex_t));
-	if (!forks)
-		return (1);
+	table->forks_r = forks;
 	table_philos = ft_calloc(table->number_of_philo + 1, sizeof(t_philo));
-	if (!table_philos)
+	table->philos = table_philos;
+	if (!table_philos || !forks)
 		return (1);
 	i = -1;
 	while (++i < table->number_of_philo)
@@ -66,18 +65,7 @@ int	init_philos(t_table *table)
 			table_philos[i].rfork = i - 1;
 		table_philos[i].forks = forks;
 		table_philos[i].table = table;
-		// temp_philo.id = i;
-		// temp_philo.eating_count = table->eating_count;
-		// temp_philo.is_eating = 0;
-		// temp_philo.is_sleeping = 0;
-		// temp_philo.is_eating = 0;
-		// temp_philo.has_fork = 0;
-		// temp_philo.time_to_die = table->time_to_die;
-		// temp_philo.time_to_eat = table->time_to_eat;
-		// temp_philo.time_to_sleep = table->time_to_sleep;
-		// table_philos[i] = temp_philo;
 	}
-	table->philos = table_philos;
 	return (0);
 }
 
@@ -87,29 +75,28 @@ int	init_pthreads(t_table *table)
 	t_render	threads;
 
 	threads.args = ft_calloc(table->number_of_philo, sizeof(t_thread));
-	if (!threads.args)
-		return (1);
 	threads.threads = ft_calloc(table->number_of_philo, sizeof(pthread_t));
-	if (!threads.threads)
+	table->threads = threads;
+	if (!threads.args || !threads.threads)
 		return (1);
-	i =-1;
+	i = -1;
 	while (++i < table->number_of_philo)
 	{
 		threads.args[i].id = i;
-		// threads.args[i].table = table;
 		threads.args[i].philo = &(table->philos[i]);
-		if (pthread_create(threads.threads + i, NULL, philo_routine, (void *)&(threads.args[i])))
+		if (pthread_create(threads.threads + i, NULL,
+				philo_routine, (void *)&(threads.args[i])))
 		{
 			while (i--)
 				pthread_join(threads.threads[i], NULL);
-			return (printf("Couldn't create threads"), (void)free(threads.threads), 1);	
+			return (printf("Couldn't create threads"),
+				(void)free(threads.threads), 1);
 		}
 	}
 	ft_simulation(table);
 	i = -1;
 	while (++i < table->number_of_philo)
 		pthread_join(threads.threads[i], NULL);
-	table->threads = threads;
 	// return ((void)ft_destroy_mutexes (philo, data), (void)free (th), 0);
 	return (0);
 }

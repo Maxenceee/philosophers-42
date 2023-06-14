@@ -18,7 +18,7 @@ int	ft_start_eating(t_philo *philo)
 	ft_print_state(philo, "has taken a fork");
 	if (philo->lfork == philo->rfork)
 	{
-		pthread_mutex_unlock (&philo->forks[ft_min(philo->lfork, philo->rfork)]);
+		pthread_mutex_unlock(&philo->forks[ft_min(philo->lfork, philo->rfork)]);
 		return (1);
 	}
 	pthread_mutex_lock(&philo->forks[ft_max(philo->lfork, philo->rfork)]);
