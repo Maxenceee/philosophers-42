@@ -72,30 +72,24 @@ int	init_philos(t_table *table)
 int	init_pthreads(t_table *table)
 {
 	int			i;
-	t_render	threads;
 
-	threads.args = ft_calloc(table->number_of_philo, sizeof(t_thread));
-	threads.threads = ft_calloc(table->number_of_philo, sizeof(pthread_t));
-	table->threads = threads;
-	if (!threads.args || !threads.threads)
+	table->threads = ft_calloc(table->number_of_philo, sizeof(pthread_t));
+	if (!table->threads)
 		return (1);
 	i = -1;
 	while (++i < table->number_of_philo)
 	{
-		threads.args[i].id = i;
-		threads.args[i].philo = &(table->philos[i]);
-		if (pthread_create(threads.threads + i, NULL,
-				philo_routine, (void *)&(threads.args[i])))
+		if (pthread_create(table->threads + i, NULL,
+				philo_routine, (void *)&(table->philos[i])))
 		{
 			while (i--)
-				pthread_join(threads.threads[i], NULL);
-			return (printf("Couldn't create threads"),
-				(void)free(threads.threads), 1);
+				pthread_join(table->threads[i], NULL);
+			return (printf("Couldn't create threads\n"), 1);
 		}
 	}
 	ft_simulation(table);
 	i = -1;
 	while (++i < table->number_of_philo)
-		pthread_join(threads.threads[i], NULL);
+		pthread_join(table->threads[i], NULL);
 	return (0);
 }

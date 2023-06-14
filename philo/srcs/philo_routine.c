@@ -66,12 +66,10 @@ int	ft_simulation(t_table *table)
 
 void	*philo_routine(void *param)
 {
-	t_thread	*thread;
 	t_philo		*philo;
 
-	thread = (t_thread *)param;
-	philo = thread->philo;
-	if (thread->id % 2 == 0)
+	philo = (t_philo *)param;
+	if (philo->id % 2 == 0)
 	{
 		ft_print_state(philo, "is thinking");
 		ft_msleep(philo->table->time_to_eat);

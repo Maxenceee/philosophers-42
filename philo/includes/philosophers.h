@@ -53,12 +53,6 @@ typedef struct s_thread
 	struct s_philo	*philo;
 }				t_thread;
 
-typedef struct s_render
-{
-	pthread_t	*threads;
-	t_thread	*args;
-}				t_render;
-
 typedef struct s_table
 {
 	unsigned long	start_timestamp;
@@ -72,7 +66,7 @@ typedef struct s_table
 	int				is_dead;
 	int				is_done;
 	t_philo			*philos;
-	t_render		threads;
+	pthread_t		*threads;
 	pthread_mutex_t	*forks_r;
 	pthread_mutex_t	*mutexes;
 }				t_table;
