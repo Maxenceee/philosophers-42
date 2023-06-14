@@ -30,7 +30,7 @@ int	ft_are_philo_done(t_table *table)
 		if (meals_count >= table->eating_count)
 			if (++done == table->number_of_philo - 1)
 				return (1);
-		usleep (50);
+		usleep(50);
 	}
 	return (0);
 }

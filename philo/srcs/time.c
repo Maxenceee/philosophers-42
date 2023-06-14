@@ -35,24 +35,24 @@ unsigned long	ft_current_time(unsigned long begin)
 
 void	ft_msleep(unsigned long msec)
 {
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
+	usleep(msec * 50);
 }
