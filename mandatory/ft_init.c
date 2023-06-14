@@ -6,7 +6,7 @@
 /*   By: maxencegama <maxencegama@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:30:54 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 12:51:14 by maxencegama      ###   ########.fr       */
+/*   Updated: 2023/06/14 13:24:02 by maxencegama      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,6 @@ int	init_philos(t_table *table)
 		// table_philos[i] = temp_philo;
 	}
 	table->philos = table_philos;
-	return (0);
-}
-
-int	ft_simulation(t_table *table)
-{
-	int				i;
-	unsigned long	last_meal;
-
-	i = 0;
-	while (1)
-	{
-		pthread_mutex_lock(&table->mutexes[MEALS]);
-		last_meal = table->philos[i].last_meal;
-		pthread_mutex_unlock(&table->mutexes[MEALS]);
-		if (last_meal && ft_abs_time() - last_meal > (unsigned int)table->time_to_die)
-		{
-			set_died(table);
-			ft_print_state(&table->philos[i], "died");
-			break ;
-		}
-		i = (i + 1) % table->number_of_philo;
-		usleep(200);
-	}
 	return (0);
 }
 
