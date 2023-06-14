@@ -6,7 +6,7 @@
 /*   By: maxencegama <maxencegama@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:43:03 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 12:48:30 by maxencegama      ###   ########.fr       */
+/*   Updated: 2023/06/14 17:15:12 by maxencegama      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	parse_philo(int argc, char **argv, t_table *table)
 	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
 	table->time_to_think = 0;
-	if ((table->number_of_philo % 2) && (table->time_to_eat > table->time_to_sleep))
+	if ((table->number_of_philo % 2)
+		&& (table->time_to_eat > table->time_to_sleep))
 		table->time_to_think = 1 + (table->time_to_eat - table->time_to_sleep);
 	if (argc == 5)
 		table->eating_count = -1;

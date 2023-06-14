@@ -6,7 +6,7 @@
 /*   By: maxencegama <maxencegama@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:30:54 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 13:24:02 by maxencegama      ###   ########.fr       */
+/*   Updated: 2023/06/14 17:13:58 by maxencegama      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,5 @@ int	init_pthreads(t_table *table)
 	i = -1;
 	while (++i < table->number_of_philo)
 		pthread_join(threads.threads[i], NULL);
-	// return ((void)ft_destroy_mutexes (philo, data), (void)free (th), 0);
 	return (0);
 }
