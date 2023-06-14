@@ -5,4 +5,5 @@
 */*.o
 .objs
 */*.objs
+./philo/philo
 LazyPhilosophersTester
