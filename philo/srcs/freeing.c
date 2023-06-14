@@ -37,5 +37,4 @@ void	free_table(t_table *table)
 		free(table->mutexes);
 	if (table->threads)
 		free(table->threads);
-	printf("finish free");
 }
