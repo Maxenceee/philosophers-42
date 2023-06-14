@@ -42,7 +42,7 @@ $(OBJ_DIR)/%.o: $(MANDATORY_DIR)/%.c $(HEADERS) Makefile
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS -o $(NAME)
+	@$(CC) $(OBJS) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)$(NAME) compiled!$(DEFAULT)"
 
 clean:
