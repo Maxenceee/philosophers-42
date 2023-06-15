@@ -15,7 +15,7 @@ SRCS			=	$(MANDATORY_DIR)/checks.c	\
 					$(MANDATORY_DIR)/time.c	\
 					$(MANDATORY_DIR)/utils.c
 OBJS			=	$(patsubst $(MANDATORY_DIR)%.c, $(OBJ_DIR)%.o, $(SRCS))
-$(info $(OBJS))
+
 HEADER_SRCS		=	philosophers.h
 HEADERS_DIR		=	includes/
 HEADERS			=	$(addprefix $(HEADERS_DIR), $(HEADER_SRCS))
