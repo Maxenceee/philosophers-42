@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:30:54 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 18:13:37 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/19 21:08:16 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	init_philos(t_table *table)
 	return (0);
 }
 
-int	init_pthreads(t_table *table)
+int	init_pthreads(register t_table *table)
 {
 	int			i;
 

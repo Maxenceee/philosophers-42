@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 11:43:03 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 18:13:43 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/21 17:14:55 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	check_args(int argc, char **argv)
 			write(2, "Error: Invalid character.\n", 26);
 			return (1);
 		}
-		if (ft_atol(argv[argc]) > INT32_MAX || ft_atol(argv[argc]) < 0)
+		if (ft_atol(argv[argc]) > INT32_MAX || ft_atol(argv[argc]) <= 0)
 		{
 			write(2, "Error: Out of range value.\n", 27);
 			return (1);
