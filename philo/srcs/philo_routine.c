@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:06:28 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 18:13:46 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/21 17:43:26 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	*philo_routine(void *param)
 	if (philo->id % 2 == 0)
 	{
 		ft_print_state(philo, "is thinking");
-		ft_msleep(philo->table->time_to_eat);
+		ft_msleep(philo->table->time_to_eat, philo);
 	}
 	while (1)
 	{
@@ -81,7 +81,7 @@ void	*philo_routine(void *param)
 		if (ft_eating(philo))
 			break ;
 		ft_print_state(philo, "is thinking");
-		ft_msleep(philo->table->time_to_think);
+		ft_msleep(philo->table->time_to_think, philo);
 	}
 	return (NULL);
 }

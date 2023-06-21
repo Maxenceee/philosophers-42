@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 18:14:24 by maxencegama       #+#    #+#             */
-/*   Updated: 2023/06/14 18:13:34 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/21 17:42:53 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_finish_eating(t_philo *philo)
 	ft_print_state(philo, "is sleeping");
 	pthread_mutex_unlock(&philo->forks[ft_max(philo->lfork, philo->rfork)]);
 	pthread_mutex_unlock(&philo->forks[ft_min(philo->lfork, philo->rfork)]);
-	ft_msleep(philo->table->time_to_sleep);
+	ft_msleep(philo->table->time_to_sleep, philo);
 	return (0);
 }
 
@@ -49,7 +49,7 @@ int	ft_eating(t_philo *philo)
 		ft_finish_eating(philo);
 		return (1);
 	}
-	ft_msleep(philo->table->time_to_eat);
+	ft_msleep(philo->table->time_to_eat, philo);
 	ft_finish_eating(philo);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:26:12 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 18:14:00 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/21 17:43:13 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int				ft_min(int a, int b);
 
 unsigned long	ft_abs_time(void);
 unsigned long	ft_current_time(unsigned long begin);
-void			ft_msleep(unsigned long msec);
+void			ft_msleep(unsigned long msec, t_philo *philo);
 
 /* freeing */
 

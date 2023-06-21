@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 13:59:40 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 18:13:22 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/21 17:27:59 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_state(t_philo *philo, char const *const str)
 	pthread_mutex_lock(&philo->table->mutexes[PRINT]);
 	if (*str == 'd' || (!check_died(philo) && !check_done(philo)))
 		printf("%lu %d %s\n",
-			ft_current_time(philo->table->start_timestamp), philo->id, str);
+			ft_current_time(philo->table->start_timestamp), philo->id + 1, str);
 	pthread_mutex_unlock (&philo->table->mutexes[PRINT]);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mgama <mgama@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:38:49 by mgama             #+#    #+#             */
-/*   Updated: 2023/06/14 18:13:51 by mgama            ###   ########.fr       */
+/*   Updated: 2023/06/21 17:44:06 by mgama            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@ unsigned long	ft_current_time(unsigned long begin)
 	return (abs_time - begin);
 }
 
-void	ft_msleep(unsigned long msec)
+void	ft_msleep(unsigned long msec, t_philo *philo)
 {
+	if (ft_abs_time() + msec > philo->last_meal + philo->table->time_to_die)
+	{
+		usleep(msec - (msec - philo->table->time_to_die));
+		return (set_died(philo->table));
+	}
 	usleep(msec * 50);
 	usleep(msec * 50);
 	usleep(msec * 50);
